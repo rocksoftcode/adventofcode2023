@@ -52,5 +52,4 @@ const ratios = Object.keys(gearLocations).reduce((acc, v) => {
   return acc;
 }, 0);
 
-// 81721933
 console.log(ratios);
