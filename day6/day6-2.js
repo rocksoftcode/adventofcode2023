@@ -8,9 +8,7 @@ let dist = 0;
 let timer = time;
 let wins = 0;
 while (timer > 0) {
-  dist = speed * timer;
-  timer--;
-  speed++;
+  dist = speed++ * timer--;
   if (dist > distance) wins++;
 }
 console.log(wins);

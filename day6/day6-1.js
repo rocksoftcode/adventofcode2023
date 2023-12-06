@@ -8,9 +8,7 @@ const simulate = race => {
   let timer = times[race];
   let wins = 0;
   while (timer > 0) {
-    distance = speed * timer;
-    timer--;
-    speed++;
+    distance = speed++ * timer--;
     if (distance > distances[race]) wins++;
   }
   return wins;
