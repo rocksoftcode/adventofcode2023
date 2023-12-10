@@ -25,23 +25,23 @@ const next = p => {
     return {x: p.x, y: p.y + 1, type: map[p.y + 1][p.x]};
   if (rN.includes(p.type) && !v.has(`${p.x + 1}-${p.y}`))
     return {x: p.x + 1, y: p.y, type: map[p.y][p.x + 1]};
-}
+};
 
 const v = new Set();
-while (pos = next(pos)) v.add(`${pos.x}-${pos.y}`)
+while (pos = next(pos)) v.add(`${pos.x}-${pos.y}`);
 
 let tiles = 0;
 map.forEach((row, y) => {
-  let rM = ""
+  let rM = '';
   row.forEach((t, x) => {
-    const b = v.has(`${x}-${y}`)
+    const b = v.has(`${x}-${y}`);
     if (b) {
-      if (t !== "-") rM += t
+      if (t !== '-') rM += t;
     }
     if (!b && (rM.match(/\||L7|FJ/g)?.length ?? 0) % 2) {
-      tiles++
+      tiles++;
     }
-  })
-})
+  });
+});
 
-console.log(tiles)
+console.log(tiles);
