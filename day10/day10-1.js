@@ -17,16 +17,16 @@ const bN = '|7F';
 const rN = '-LF';
 
 const next = pos => {
-  if (tN.includes(pos.type) && !visited.has(`${pos.x}-${pos.y - 1}`))
+  if (tN.includes(pos.type) && !v.has(`${pos.x}-${pos.y - 1}`))
     return {x: pos.x, y: pos.y - 1, type: map[pos.y - 1][pos.x]};
-  if (lN.includes(pos.type) && !visited.has(`${pos.x - 1}-${pos.y}`))
+  if (lN.includes(pos.type) && !v.has(`${pos.x - 1}-${pos.y}`))
     return {x: pos.x - 1, y: pos.y, type: map[pos.y][pos.x - 1]};
-  if (bN.includes(pos.type) && !visited.has(`${pos.x}-${pos.y + 1}`))
+  if (bN.includes(pos.type) && !v.has(`${pos.x}-${pos.y + 1}`))
     return {x: pos.x, y: pos.y + 1, type: map[pos.y + 1][pos.x]};
-  if (rN.includes(pos.type) && !visited.has(`${pos.x + 1}-${pos.y}`))
+  if (rN.includes(pos.type) && !v.has(`${pos.x + 1}-${pos.y}`))
     return {x: pos.x + 1, y: pos.y, type: map[pos.y][pos.x + 1]};
 }
-const visited = new Set();
-while (pos = next(pos)) visited.add(`${pos.x}-${pos.y}`)
+const v = new Set();
+while (pos = next(pos)) v.add(`${pos.x}-${pos.y}`)
 
-console.log(visited.size / 2);
+console.log(v.size / 2);
