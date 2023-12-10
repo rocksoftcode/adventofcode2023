@@ -34,11 +34,11 @@ let tiles = 0;
 map.forEach((row, y) => {
   let rM = ""
   row.forEach((t, x) => {
-    let poly = v.has(`${x}-${y}`)
-    if (poly) {
+    const b = v.has(`${x}-${y}`)
+    if (b) {
       if (t !== "-") rM += t
     }
-    if (!poly && (rM.match(/\||L7|FJ/g)?.length ?? 0) % 2) {
+    if (!b && (rM.match(/\||L7|FJ/g)?.length ?? 0) % 2) {
       tiles++
     }
   })
