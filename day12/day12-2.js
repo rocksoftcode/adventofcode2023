@@ -13,12 +13,16 @@ const poss = (ref, n, f, idxN, idxF, idxG) => {
     return 0;
   }
   let out = 0;
-  if (n[idxN] === '#' || n[idxN] === '?')
+  if (n[idxN] === '#' || n[idxN] === '?') {
     out += poss(ref, n, f, idxN + 1, idxF, idxG + 1);
+  }
   if (n[idxN] === '.' || n[idxN] === '?') {
-    if (idxG === 0) out += poss(ref, n, f, idxN + 1, idxF, 0);
-    if (idxG > 0 && idxF < f.length && f[idxF] === idxG)
+    if (idxG === 0) {
+      out += poss(ref, n, f, idxN + 1, idxF, 0);
+    }
+    if (idxG > 0 && idxF < f.length && f[idxF] === idxG) {
       out += poss(ref, n, f, idxN + 1, idxF + 1, 0);
+    }
   }
   return (ref[key] = out);
 }
