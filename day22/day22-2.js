@@ -126,4 +126,4 @@ Object.values(graph).forEach(node => {
   }
 });
 
-console.log(Object.values(graph).reduce((a, c) => a + c.supports.length, 0));
+console.log(Object.values(graph).reduce((acc, v) => acc + v.supports.length, 0));
