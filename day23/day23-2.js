@@ -29,7 +29,7 @@ const connect = curr => {
 };
 
 let stack = [{p: [1, 0], steps: 0, idLast: 0, toLast: 0}];
-let seen = {};
+let visited = {};
 let endPos = [grid[0].length - 2, grid.length - 1];
 let max;
 const nodes = [{p: [1, 0], conn: []}];
@@ -44,8 +44,8 @@ while (stack.length) {
     curr.toLast = curr.steps;
   }
 
-  if (seen[k]) continue;
-  seen[k] = 1;
+  if (visited[k]) continue;
+  visited[k] = 1;
 
   if (curr.p[0] === endPos[0] && curr.p[1] === endPos[1]) {
     connect(curr);
@@ -60,22 +60,22 @@ while (stack.length) {
   }));
 }
 
-stack = [{p: 0, steps: 0, seen: {}}];
+stack = [{p: 0, steps: 0, visited: {}}];
 endPos = nodes.length - 1;
 max = 0;
 while (stack.length) {
   let cur = stack.pop();
   let k = cur.p;
-  cur.seen[k] = 1;
+  cur.visited[k] = 1;
   if (cur.p === endPos) {
     max = Math.max(cur.steps, max);
     continue;
   }
 
-  nodes[k].conn.filter(n => cur.seen[n.id] === undefined).forEach(n => stack.push({
+  nodes[k].conn.filter(n => cur.visited[n.id] === undefined).forEach(n => stack.push({
     p: n.id,
     steps: cur.steps + n.distance,
-    seen: {...cur.seen}
+    visited: {...cur.visited}
   }));
 }
 
